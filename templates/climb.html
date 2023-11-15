@@ -1,0 +1,17 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+
+
+<h1>Climb Page</h1>
+{% if error %}
+<p class="error"><strong>Error:</strong> {{ error }}
+
+{% else %}
+<h1 class="message">Climb Name: {{climbName}} </h1>
+<h1 class="message">Climb Difficulty: {{climbDifficulty}} </h1>
+<h1 class="message">Climb Type: {{climbName}} </h1>
+<h1 class="message">Climb Spot: {{climbSpot}} </h1>
+
+{% endif %}
+{% endblock %}

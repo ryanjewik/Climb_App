@@ -1,0 +1,10 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+</head>
+<title>Hello from Flask</title>
+<h1 class="message">Home</h1> 
+<a href="{{ url_for('climbpage', climbName='Stem Gem') }}">Stem Gem Climb!</a>
+{% endblock %}
