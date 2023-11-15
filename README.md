@@ -4,6 +4,6 @@
 
 ### The "templates" folder is where all of the html pages go
 
-### The "static" folder is where all of the stying goes.
+### The "static" folder is where all of the styling goes.
 
 ### The "app.py" file handles all of the logic
