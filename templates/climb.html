@@ -8,10 +8,12 @@
 <h1>Climb List</h1>
 {% endif %}
 
+<ul class ="b">
 {% for each in climbArr %}
 
-<a href="{{ url_for('singleClimb', climbName=each.climbName) }}">{{each.climbName}}</a>
+<a href="{{ url_for('singleClimb', climbName=each.climbName) }}" class="my-links">{{each.climbName}}</a>
+
 <h1></h1>
 {% endfor %}
-
+</ul>
 {% endblock %}

@@ -7,11 +7,19 @@
     </head>
 
     <body>
-        <div class="navbar">
-            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
-            <a href="{{ url_for('login') }}" class="navbar-item">Login</a>
-            <a href="{{ url_for('climbpage') }}" class="navbar-item">Climbs</a>
-        </div>
+
+          <ul class = "a">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">Climbs</a>
+              <div class="dropdown-content">
+                <a href="{{ url_for('climbpage') }}">All Climbs</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </li>
+          </ul>
 
         <div class="body-content">
             {% block content %}
