@@ -4,6 +4,16 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
+
+
+class Climb:
+    def __init__(self,climbName,climbDifficulty,climbType,climbSpot):
+        self.climbName = climbName
+        self.climbDifficulty = climbDifficulty
+        self.climbType = climbType
+        self.climbSpot = climbSpot
+
+
 '''
 
 HOME PAGE.  WE CAN DO SOMETHING HERE AT SOME POINT, AND ROUTING FUNCTIONALITY.  MAYBE SOMETHING LIKE COMMUNITY NEWS
@@ -50,16 +60,23 @@ CLIMB PAGE.  WILL LOOK THROUGH CLIMB DATABSE TO SEE IF CLIMB NAME IS PRESENT.  I
 
 '''
 @app.route('/climb/')
-@app.route('/climb/<climbName>')
-def climbpage(climbName = None,climbDifficulty = None,climbType = None,climbSpot = None):
+def climbpage(climbName = None,climb = None):
+    climbArr = []
 
-    if(climbName == "Stem Gem"):
-        climbDifficulty = "V4"
-        climbType = "Boulder"
-        climbSpot = "Joshua Tree"
+    # CREATE LIST OF DESIRED CLIMBS FROM DATABASE, EITHER USER OR AREA OR STATE
+    for i in range(100):
+        climbArr.append(Climb("Climb " + str(i),str(i),str(i),str(i)))
 
-        error  = None
+    if(climbArr):
+        error = None
     else:
-        error = "Climb " + str(climbName) + " not Found"
+        
+        error = "Climbs not Found"
+    
+    return render_template('climb.html',error=error, climbArr = climbArr)
 
-    return render_template('climb.html',climbName = climbName,climbDifficulty = climbDifficulty,climbType = climbType,climbSpot = climbSpot, error=error)
+@app.route('/climb/<climbName>')
+def singleClimb(climbName = None):
+        error = None
+        climb = Climb(climbName,"V4","Boulder","Joshua Tree")
+        return render_template('singleClimb.html',climb = climb, error=error)

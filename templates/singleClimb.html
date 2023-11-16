@@ -1,0 +1,15 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>{{climb.climbName}}</h1>
+{% if error and climbName %}
+<p class="error"><strong>Error:</strong> {{ error }}
+
+{% elif climb %}
+<h1 class="message">Climb Difficulty: {{climb.climbDifficulty}} </h1>
+<h1 class="message">Climb Type: {{climb.climbType}} </h1>
+<h1 class="message">Climb Spot: {{climb.climbSpot}} </h1>
+
+{% endif %}
+{% endblock %}

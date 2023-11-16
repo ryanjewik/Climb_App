@@ -4,14 +4,12 @@
 
 
 <h1>Climb Page</h1>
-{% if error %}
-<p class="error"><strong>Error:</strong> {{ error }}
 
-{% else %}
-<h1 class="message">Climb Name: {{climbName}} </h1>
-<h1 class="message">Climb Difficulty: {{climbDifficulty}} </h1>
-<h1 class="message">Climb Type: {{climbName}} </h1>
-<h1 class="message">Climb Spot: {{climbSpot}} </h1>
 
-{% endif %}
+{% for each in climbArr %}
+
+<a href="{{ url_for('singleClimb', climbName=each.climbName) }}">{{each.climbName}}</a>
+<h1></h1>
+{% endfor %}
+
 {% endblock %}

@@ -1,4 +1,6 @@
 <!doctype html>
+{% extends "layout.html" %}
+{% block content %}
 <head>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
@@ -9,3 +11,4 @@
 
 <span class="message">Hello World!</span> 
 {% endif %}
+{% endblock %}
