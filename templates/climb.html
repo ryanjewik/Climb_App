@@ -2,9 +2,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-
-<h1>Climb Page</h1>
-
+{% if userName %}
+<h1>{{userName}} Climbs</h1>
+{% else %}
+<h1>Climb List</h1>
+{% endif %}
 
 {% for each in climbArr %}
 

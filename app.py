@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for,session
 from flask import request
 from sqlalchemy import create_engine
 app = Flask(__name__)
-app.secret_key = 'super secret key'
+app.secret_key = 'super secret keys'
 
 
 
@@ -60,12 +60,21 @@ CLIMB PAGE.  WILL LOOK THROUGH CLIMB DATABSE TO SEE IF CLIMB NAME IS PRESENT.  I
 
 '''
 @app.route('/climb/')
-def climbpage(climbName = None,climb = None):
+@app.route('/<userName>/climb/')
+def climbpage(climbName = None,climb = None,userName = None):
     climbArr = []
+    '''
+        if('username' in session):
+        userName = session['username']
+    '''
 
     # CREATE LIST OF DESIRED CLIMBS FROM DATABASE, EITHER USER OR AREA OR STATE
-    for i in range(100):
-        climbArr.append(Climb("Climb " + str(i),str(i),str(i),str(i)))
+    if(userName):
+        for i in range(10):
+            climbArr.append(Climb("Climb " + str(i),str(i),str(i),str(i)))
+    else:
+        for i in range(100):
+            climbArr.append(Climb("Climb " + str(i),str(i),str(i),str(i)))
 
     if(climbArr):
         error = None
@@ -73,10 +82,11 @@ def climbpage(climbName = None,climb = None):
         
         error = "Climbs not Found"
     
-    return render_template('climb.html',error=error, climbArr = climbArr)
+    return render_template('climb.html',error=error, climbArr = climbArr,userName = userName)
 
 @app.route('/climb/<climbName>')
 def singleClimb(climbName = None):
         error = None
         climb = Climb(climbName,"V4","Boulder","Joshua Tree")
         return render_template('singleClimb.html',climb = climb, error=error)
+
