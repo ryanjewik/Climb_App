@@ -33,14 +33,17 @@ ul.b {
 }
 
 ul.a{
+    
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    
   }
   
   li {
+
     float: left;
   }
   
@@ -89,9 +92,46 @@ ul.a{
     font-weight: 600;
     color: green;
 }
-
+.title {
+    text-align: center;
+    font-weight: 1000;
+    color: black;
+}
 
 .body-content {
     padding: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+h1.title {
+    font-size: 10em;
+  }
+
+input,
+.btn {
+    
+  align-self: center;
+  width: 100%;
+  padding: 12px;
+  border:#333;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }

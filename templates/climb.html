@@ -2,12 +2,13 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<div>
 {% if userName %}
 <h1>{{userName}} Climbs</h1>
 {% else %}
 <h1>Climb List</h1>
 {% endif %}
-
+</div>
 <ul class ="b">
 {% for each in climbArr %}
 
