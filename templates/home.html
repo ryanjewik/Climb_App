@@ -1,10 +1,28 @@
 <!doctype html>
 {% extends "layout.html" %}
+
 {% block content %}
 <head>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
 <title>Hello from Flask</title>
+
 <h1 class="message">Home</h1> 
+
+<!-- Ranking List of Climbs -->
+<div class="top-climbs">
+    <h2>Top 5 Climbs</h2>
+    <ol class="climb-list">
+        {% for climb in top_climbs %}
+            <li>
+                <span class="climb-name">{{ climb.name }}</span> - 
+                <span class="climb-rating">Rating: {{ climb.rating }}</span>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+
+<!-- Existing link to a specific climb -->
 <a href="{{ url_for('singleClimb', climbName='Stem Gem') }}">Stem Gem Climb!</a>
+
 {% endblock %}
