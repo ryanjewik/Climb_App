@@ -1,0 +1,31 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+</head>
+<title>Leaderboard</title>
+<h1 class="message">Leaderboard</h1> 
+<table class="center">
+    <colgroup>
+        <col class="column-1">
+        <col class="column-3">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Climbs Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in range(0, len)%}
+      <tr>
+        <td>{{userArr[i][0]}}</td>
+        <td>{{userArr[i][1]}}</td>
+      </tr>
+      {% endfor %}
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+
+{% endblock %}

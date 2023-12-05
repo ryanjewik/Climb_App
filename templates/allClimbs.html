@@ -12,7 +12,7 @@
 <ul class ="b">
 {% for each in climbArr %}
 
-<a href="{{ url_for('singleClimb', climbName=each, areaName = areaName,locationName = locationName, stateName = stateName, spotName = spotName) }}" class="my-links">{{each}}</a>
+<a href="{{ url_for('singleClimb', climbName=each, areaName = areaName,locationName = locationName, stateName = stateName, spotName = spotName)  }}" class="my-links">{{each}}</a>
 
 <h1></h1>
 {% endfor %}

@@ -7,6 +7,34 @@
 <title>Hello from Flask</title>
 {% if name %}
 <h1 class="message">Hello there, {{ name }}!</h1> 
+<table>
+    <colgroup>
+        <col class="column-1">
+        <col class="column-4">
+        <col class="column-2">
+        <col class="column-3">
+        
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Climb Name</th>
+        <th>Spot Name</th>
+        <th>Climb Difficulty</th>
+        <th>Climb Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in range(0, len)%}
+      <tr>
+        <td>{{climbArr[i].climbName}}</td>
+        <td>{{ratingSpots[i][0]}}</td>
+        <td>V{{climbArr[i].climbDifficulty}}</td>
+        <td>{{ratingSpots[i][1]}}/5</td>
+      </tr>
+      {% endfor %}
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
 {% else %}
 
 <span class="message">Hello World!</span> 

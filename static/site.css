@@ -27,9 +27,9 @@
 }
 
 ul.b {
-    -webkit-column-count: 3;
+    -webkit-column-count: auto;
     -moz-column-count: 3;
-    column-count: 10;
+    column-count: auto;
 }
 
 ul.a{
@@ -135,3 +135,45 @@ input[type=submit] {
   input[type=submit]:hover {
     background-color: #45a049;
   }
+  .my-links2 {
+
+  }
+
+  table {
+    width: 25%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .column-1 {
+    width: 15%;
+}
+
+.column-2 {
+    width: 5%; /* Adjust the width here */
+}
+
+.column-3 {
+    width: 5%;
+}
+.column-4 {
+  width: 5%;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}

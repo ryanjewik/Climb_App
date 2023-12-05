@@ -14,11 +14,14 @@
             <li class="dropdown">
               <a href="javascript:void(0)" class="dropbtn">Climbs</a>
               <div class="dropdown-content">
-                <a href="{{ url_for('climbpage') }}">All Climbs</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="{{ url_for('allClimbs') }}">All Climbs</a>
+                <a href="{{ url_for('climbpage') }}">Browse Climbs</a>
+                <a href="{{ url_for('randomGen') }}">Random Climb</a>
+                <a href="{{ url_for('recommendation') }}">Recommend Me a Climb</a>
               </div>
             </li>
+            <li><a href="{{ url_for('user') }}">My Profile</a></li>
+            <li><a href="{{ url_for('leaderboard') }}">Leaderboard</a></li>
           </ul>
 
         <div class="body-content">
