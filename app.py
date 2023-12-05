@@ -56,9 +56,14 @@ TODO POTENTIALLY WITH IMAGES
 @app.route("/")
 @app.route("/home")
 def home():
+    # Query to fetch top 5 climbs
+    query = text("SELECT ClimbName, Rating FROM climbs ORDER BY Rating DESC LIMIT 5")
+    top_climbs = conn.execute(query).fetchall()
 
-    return render_template('home.html')
+    # Convert to list of dictionaries
+    climbs_list = [{"name": climb[0], "rating": climb[1]} for climb in top_climbs]
 
+    return render_template('home.html', top_climbs=climbs_list)
 
 '''
 SZYMON KOZLOWSKI
