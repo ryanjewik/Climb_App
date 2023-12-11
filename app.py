@@ -421,7 +421,18 @@ TODO POTENTIALLY ADD IMAGE
 
 '''
 
-
+@app.route('/rate_climb/<int:climb_id>', methods=['POST'])
+def rate_climb(climb_id):
+    if 'userID' in session:
+        user_id = session['userID']
+        rating = request.form['rating']
+        # Update the rating in the CompletedClimbs table
+        update_query = text("UPDATE CompletedClimbs SET Rating = :rating WHERE UserID = :user_id AND ClimbID = :climb_id")
+        conn.execute(update_query, {"rating": rating, "user_id": user_id, "climb_id": climb_id})
+        conn.commit()
+        return redirect(url_for('singleClimb', climbName=climb_name))
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/climb/////<climbName>')
