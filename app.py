@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for,session
+from flask import Flask, render_template, redirect, url_for, session, request, flash
 from flask import request
 import random
 from sqlalchemy import create_engine
@@ -41,7 +41,7 @@ class Climb:
 
 
 
-       # self.climbSpot = climbSpot
+    # self.climbSpot = climbSpot
 
 
 '''
@@ -56,14 +56,38 @@ TODO POTENTIALLY WITH IMAGES
 @app.route("/")
 @app.route("/home")
 def home():
-    # Query to fetch top 5 climbs
-    query = text("SELECT ClimbName, Rating FROM climbs ORDER BY Rating DESC LIMIT 5")
-    top_climbs = conn.execute(query).fetchall()
+    # Fetch top 5 climbs based on average rating
+    top_climbs_query = text("""
+        SELECT Climbs.ClimbName, AVG(CompletedClimbs.Rating) as AvgRating
+        FROM Climbs
+        JOIN CompletedClimbs ON Climbs.ClimbID = CompletedClimbs.ClimbID
+        GROUP BY Climbs.ClimbName
+        ORDER BY AvgRating DESC
+        LIMIT 5
+    """)
+    top_climbs = conn.execute(top_climbs_query).fetchall()
+    climbs_list = [{"name": climb[0], "rating": float(climb[1])} for climb in top_climbs]
 
-    # Convert to list of dictionaries
-    climbs_list = [{"name": climb[0], "rating": climb[1]} for climb in top_climbs]
+    # Check if the user is logged in
+    if 'UserID' in session:
+        user_id = session['UserID']
+        # SQL query to get climbs that the user hasn't rated yet
+        available_climbs_query = text("""
+            SELECT ClimbID, ClimbName FROM Climbs
+            WHERE ClimbID NOT IN (
+                SELECT ClimbID FROM CompletedClimbs WHERE UserID = :user_id
+            )
+        """)
+        available_climbs = conn.execute(available_climbs_query, {'user_id': user_id}).fetchall()
+    else:
+        available_climbs = []
+    
+    print("Is User Logged In?", 'UserID' in session)
+    print("Available Climbs:", available_climbs)
+    # Pass the climbs to the template
+    return render_template('home.html', top_climbs=climbs_list, climbs=available_climbs)
 
-    return render_template('home.html', top_climbs=climbs_list)
+
 
 '''
 SZYMON KOZLOWSKI
@@ -110,23 +134,37 @@ def leaderboard():
 
 @app.route('/user/')
 @app.route('/user/<name>')
+def user(name=None):
+    if 'userID' in session:
+        user_id = session['userID']
+        name = session.get('username', name)
 
-def user(name=None,methods = ['GET','POST']):
-    if('userID' in session):
-        name = session['username']
-        climbArr = []    
-        ratingSpots = []
-        query = text("SELECT climbs.*,climbingspots.SpotName,completedclimbs.Rating FROM climbs JOIN completedclimbs ON climbs.climbID = completedclimbs.climbID JOIN climbingspots ON climbingspots.SpotID = climbs.SpotID WHERE completedclimbs.userID = :userID")
-        res = conn.execute(query, {"userID": session['userID']}).fetchall()
-        print(res)
+        # Fetch climbs the user has completed along with ratings
+        completed_climbs_query = text("""
+            SELECT climbs.*, climbingspots.SpotName, completedclimbs.Rating 
+            FROM climbs 
+            JOIN completedclimbs ON climbs.climbID = completedclimbs.climbID 
+            JOIN climbingspots ON climbingspots.SpotID = climbs.SpotID 
+            WHERE completedclimbs.userID = :userID
+        """)
+        completed_climbs_res = conn.execute(completed_climbs_query, {"userID": user_id}).fetchall()
 
-        for i in range(len(res)):
-            climbArr.append(Climb(res[i]))
-            ratingSpots.append((res[i][5],res[i][6]))
-        print(ratingSpots)
-        return render_template('hello.html', name=name,climbArr = climbArr,len=len(climbArr),ratingSpots = ratingSpots)
+        climbArr = [Climb(climb) for climb in completed_climbs_res]
+        ratingSpots = [(climb[5], climb[6]) for climb in completed_climbs_res]
+
+        # Fetch climbs that the user hasn't rated yet
+        available_climbs_query = text("""
+            SELECT ClimbID, ClimbName FROM Climbs
+            WHERE ClimbID NOT IN (
+                SELECT ClimbID FROM CompletedClimbs WHERE UserID = :user_id
+            )
+        """)
+        available_climbs = conn.execute(available_climbs_query, {'user_id': user_id}).fetchall()
+
+        return render_template('hello.html', name=name, climbArr=climbArr, ratingSpots=ratingSpots, len=len(climbArr), available_climbs=available_climbs)
     else:
         return redirect(url_for('login'))
+
         
 
 @app.route('/login',methods = ['GET','POST'])
@@ -412,14 +450,35 @@ def climb(locationName = None, stateName = None,areaName = None,spotName = None)
 
 
 '''
-
 JACCOB MAU
-
 TODO ADD RATING FEATURE IF USER IS LOGGED IN, AND HAS NOT RATED CLIMB
-
-TODO POTENTIALLY ADD IMAGE
-
 '''
+
+@app.route('/submit_rating', methods=['POST'])
+def submit_rating():
+    if 'UserID' not in session:
+        flash('You must be logged in to rate climbs.')
+        return redirect(url_for('login'))
+
+    user_id = session['UserID']
+    climb_id = request.form.get('climb_id')
+    rating = request.form.get('rating')
+
+    try:
+        # Insert the rating into the database
+        insert_query = text("""
+            INSERT INTO CompletedClimbs (UserID, ClimbID, Rating) 
+            VALUES (:user_id, :climb_id, :rating);
+        """)
+        conn.execute(insert_query, {'user_id': user_id, 'climb_id': climb_id, 'rating': rating})
+        conn.commit()
+        flash('Your rating has been submitted successfully!')
+    except Exception as e:
+        flash('There was an error submitting your rating.')
+        app.logger.error('Error submitting rating: %s', e)
+
+    return redirect(url_for('home'))
+
 
 @app.route('/rate_climb/<int:climb_id>', methods=['POST'])
 def rate_climb(climb_id):
