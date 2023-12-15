@@ -7,22 +7,44 @@
 </head>
 <title>Hello from Flask</title>
 
-<h1 class="message">Home</h1> 
+<div class="content">
+    <h1 class="message">Home</h1> 
 
-<!-- Ranking List of Climbs -->
-<div class="top-climbs">
-    <h2>Top 5 Climbs</h2>
-    <ol class="climb-list">
-        {% for climb in top_climbs %}
-            <li>
-                <span class="climb-name">{{ climb.name }}</span> - 
-                <span class="climb-rating">Rating: {{ climb.rating }}</span>
-            </li>
-        {% endfor %}
-    </ol>
+    <!-- Ranking List of Climbs -->
+    <div class="top-climbs">
+        <h2>Top 5 Climbs</h2>
+        <ol class="climb-list">
+            {% for climb in top_climbs %}
+                <li>
+                    <span class="climb-name">#{{ loop.index }} {{ climb.name }}</span> - 
+                    <span class="climb-rating">Rating: {{ climb.rating|round(2) }}</span>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
 </div>
 
-<!-- Existing link to a specific climb -->
-<a href="{{ url_for('singleClimb', climbName='Stem Gem') }}">Stem Gem Climb!</a>
+<!-- Inside home.html -->
+
+{% if 'UserID' in session %}
+    <!-- Rating form for logged-in users -->
+    <form action="{{ url_for('submit_rating') }}" method="post">
+        <label for="climb_id">Select Climb:</label>
+        <select name="climb_id" id="climb_id">
+            {% for climb in climbs %}
+                <option value="{{ climb.ClimbID }}">{{ climb.ClimbName }}</option>
+            {% endfor %}
+        </select>
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating" id="rating" min="1" max="5" required>
+        <input type="submit" value="Submit Rating">
+    </form>
+{% endif %}
+
+
+<!-- Button link for Stem Gem Climb at the bottom -->
+<div class="bottom-container">
+    <a href="{{ url_for('singleClimb', climbName='Stem Gem') }}" class="my-links">Stem Gem Climb!</a>
+</div>
 
 {% endblock %}
