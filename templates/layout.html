@@ -2,35 +2,45 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %} - Climbing Community</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
     </head>
 
     <body>
-
-          <ul class = "a">
+        <ul class="a">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
             <li class="dropdown">
-              <a href="javascript:void(0)" class="dropbtn">Climbs</a>
-              <div class="dropdown-content">
-                <a href="{{ url_for('allClimbs') }}">All Climbs</a>
-                <a href="{{ url_for('climbpage') }}">Browse Climbs</a>
-                <a href="{{ url_for('randomGen') }}">Random Climb</a>
-                <a href="{{ url_for('recommendation') }}">Recommend Me a Climb</a>
-              </div>
+                <a href="javascript:void(0)" class="dropbtn">Climbs</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('allClimbs') }}">All Climbs</a>
+                    <a href="{{ url_for('climbpage') }}">Browse Climbs</a>
+                    <a href="{{ url_for('randomGen') }}">Random Climb</a>
+                    <a href="{{ url_for('recommendation') }}">Recommend Me a Climb</a>
+                </div>
             </li>
             <li><a href="{{ url_for('user') }}">My Profile</a></li>
             <li><a href="{{ url_for('leaderboard') }}">Leaderboard</a></li>
-          </ul>
+        </ul>
 
         <div class="body-content">
             {% block content %}
+            <!-- Content from child templates will be rendered here -->
             {% endblock %}
             <hr/>
             <footer>
-                <p>&copy; 2023</p>
+                <p>&copy; 2023 Climbing Community</p>
             </footer>
         </div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
     </body>
 </html>

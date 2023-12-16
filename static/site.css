@@ -1,3 +1,12 @@
+.bottom-container {
+  text-align: center; /* Center the button container */
+  margin: 20px 0; /* Add some margin at the top and bottom */
+  /* If you want it to be at the very bottom outside of .content */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px; /* Height of the footer, adjust as needed */
+}
 
 .my-links {
     display: flex;
@@ -14,6 +23,10 @@
     height: 50px;
     text-overflow: ellipsis;
     padding: 10px;
+    display: inline-block; /* Make sure it doesn't stretch full width */
+    margin: 0 auto; /* Center the button if .top-container is flex */
+    text-decoration: none; /* Remove underline from link */
+    padding: 10px 20px; /* Add some padding inside the button */
     /* Add more styles as needed */
 }
 
@@ -176,4 +189,58 @@ input[type=submit] {
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Specific styles for climb listing */
+.climb-list {
+  list-style-type: decimal; /* Ensures numbers are shown */
+  padding-left: 20px; /* Adds padding to align numbers properly */
+}
+
+.climb-list li {
+  display: block; /* Overrides any float styles and ensures list items stack vertically */
+  margin-bottom: 10px; /* Adds space between list items */
+  clear: both; /* Clears the float effect */
+}
+
+/* Clears the float effect on all elements inside climb-list for a clean layout */
+.climb-list li::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.climb-list .climb-name {
+  font-weight: bold; /* Makes climb name bold */
+}
+
+.climb-list .climb-rating {
+  display: inline-block; /* Ensures rating does not wrap onto a new line */
+  margin-left: 5px; /* Adds a little space before the rating */
+}
+
+.stem-gem-link {
+  text-align: center;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px; /* Adjust as needed */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Adjust as needed */
+}
+
+.content {
+  min-height: calc(100vh - 60px); /* Adjust the 60px to match your footer height */
+  /* Rest of your content styles */
+}
+
+.footer {
+  text-align: center;
+  width: 100%;
+  height: 60px; /* Set the footer height here */
+  /* Rest of your footer styles */
 }

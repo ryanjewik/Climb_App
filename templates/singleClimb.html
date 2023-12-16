@@ -2,14 +2,36 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1 class = "title">{{climb.climbName}}</h1>
+<h1 class="title">{{ climb.climbName }}</h1>
+
 {% if error and climbName %}
-<p class="error"><strong>Error:</strong> {{ error }}
-
+    <p class="error"><strong>Error:</strong> {{ error }}
 {% elif climb %}
-<h1 class="message">Climb Difficulty: {{climb.climbDifficulty}} </h1>
-<h1 class="message">Climb Type: {{climb.climbType}} </h1>
-<h1 class="message">Climb Spot: {{climb.climbSpot}} </h1>
+    <h2>Climb Difficulty: {{ climb.climbDifficulty }} </h2>
+    <h2>Climb Type: {{ climb.climbType }} </h2>
+    <h2>Climb Spot: {{ climb.climbSpot }} </h2>
 
+    <!-- Button for Marking Climb as Completed -->
+    {% if 'userID' in session and not_already_completed %}
+        <form action="{{ url_for('mark_completed', climb_id=climb.ClimbID) }}" method="post">
+            <button type="submit">Mark as Completed</button>
+        </form>
+    {% endif %}
+
+    <!-- Rating Form -->
+    {% if 'userID' in session and not_already_rated %}
+        <form action="{{ url_for('rate_climb', climb_id=climb.ClimbID) }}" method="post">
+            <label for="rating">Your Rating:</label>
+            <select name="rating" id="rating">
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+            <button type="submit">Submit Rating</button>
+        </form>
+    {% endif %}
 {% endif %}
+
 {% endblock %}
