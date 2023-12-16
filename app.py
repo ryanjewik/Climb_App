@@ -517,56 +517,58 @@ def singleClimb(climbName = None, stateName = None, locationName = None, areaNam
         return render_template('singleClimb.html',climb = climb, error=error)
 
 @app.route('/submit_rating', methods=['POST'])
-def submit_rating():
+def submit_rating(name = None):
     # Logging the start of the function
     app.logger.info('Submit rating called')
-
-    # Check if user is logged in
-    if 'UserID' not in session:
-        app.logger.warning('User not in session')
-        flash('You must be logged in to rate climbs.')
-        return redirect(url_for('login'))
-
-    user_id = session['UserID']
-    app.logger.info(f'Session user_id: {user_id}')
+    user_id = session['userID']
+    #name = session.get('username', name)
+    name=session.get('username')
 
     climb_id = request.form.get('climb_id')
     rating = request.form.get('rating')
 
-    try:
-        # Check if the user has already rated this climb
-        check_query = text("""
-            SELECT * FROM CompletedClimbs 
-            WHERE UserID = :user_id AND ClimbID = :climb_id;
-        """)
-        existing_rating = conn.execute(check_query, {'user_id': user_id, 'climb_id': climb_id}).fetchone()
+    #query = "INSERT INTO completedclimbs (UserID, ClimbID, Rating) VALUES(" + str(user_id) + ", "+ str(climb_id) + ", " + str(rating) + ")"
+    insert_query = text("""
+        INSERT INTO completedclimbs (UserID, ClimbID, Rating) 
+        VALUES (:user_id, :climb_id, :rating);
+    """)
+    #conn.execute(text(query))
+    conn.execute(insert_query, {'user_id': user_id, 'climb_id': climb_id, 'rating': rating})
+    conn.commit()
+    print("testing testing testing")
+    flash('Your rating has been submitted successfully!')
 
-        if existing_rating:
-            # Update the existing rating
-            update_query = text("""
-                UPDATE CompletedClimbs 
-                SET Rating = :rating 
-                WHERE UserID = :user_id AND ClimbID = :climb_id;
-            """)
-            conn.execute(update_query, {'user_id': user_id, 'climb_id': climb_id, 'rating': rating})
-        else:
-            # Insert the new rating
-            insert_query = text("""
-                INSERT INTO CompletedClimbs (UserID, ClimbID, Rating) 
-                VALUES (:user_id, :climb_id, :rating);
-            """)
-            conn.execute(insert_query, {'user_id': user_id, 'climb_id': climb_id, 'rating': rating})
-
-        flash('Your rating has been submitted successfully!')
-    except Exception as e:
-        flash('There was an error submitting your rating. Error: ' + str(e))
-        app.logger.error('Error submitting rating: %s', e)
 
     # Re-fetch data for the user
     # [Add the code here to re-fetch the data needed for rendering the hello.html page]
 
     app.logger.info(f'Re-rendering hello.html for user {session.get("username")}')
-    return render_template('hello.html', name=session.get('username')) # Replace ... with the necessary variables
+    #return render_template('hello.html', name=session.get('username')) # Replace ... with the necessary variables
+
+    # Fetch climbs the user has completed along with ratings
+    completed_climbs_query = text("""
+        SELECT climbs.*, climbingspots.SpotName, completedclimbs.Rating 
+        FROM climbs 
+        JOIN completedclimbs ON climbs.climbID = completedclimbs.climbID 
+        JOIN climbingspots ON climbingspots.SpotID = climbs.SpotID 
+        WHERE completedclimbs.userID = :userID
+    """)
+    completed_climbs_res = conn.execute(completed_climbs_query, {"userID": user_id}).fetchall()
+
+    climbArr = [Climb(climb) for climb in completed_climbs_res]
+    ratingSpots = [(climb[5], climb[6]) for climb in completed_climbs_res]
+
+    # Fetch climbs that the user hasn't rated yet
+    available_climbs_query = text("""
+        SELECT ClimbID, ClimbName FROM Climbs
+        WHERE ClimbID NOT IN (
+            SELECT ClimbID FROM CompletedClimbs WHERE UserID = :user_id
+        )
+    """)
+    available_climbs = conn.execute(available_climbs_query, {'user_id': user_id}).fetchall()
+
+
+    return render_template('hello.html', name=name, climbArr=climbArr, ratingSpots=ratingSpots, len=len(climbArr), available_climbs=available_climbs)
 
 
 @app.route('/fetch-view')
