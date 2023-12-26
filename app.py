@@ -61,15 +61,7 @@ class Climb:
     # self.climbSpot = climbSpot
 
 
-'''
 
-HOME PAGE.  WE CAN DO SOMETHING HERE AT SOME POINT, AND ROUTING FUNCTIONALITY.  MAYBE SOMETHING LIKE COMMUNITY NEWS
-JACCOB MAU
-
-TODO SHOWS TOP X CLIMBS 
-TODO POTENTIALLY WITH IMAGES
-
-'''
 @app.route("/")
 @app.route("/home")
 def home():
@@ -106,15 +98,7 @@ def home():
 
 
 
-'''
-SZYMON KOZLOWSKI
 
-TODO TAB OF USER PROFILE.
-
-TODO FEATURES LIKE COMPLETED CLIMBS, MARKING CLIMBS YOU'VE DONE
-
-
-'''
 @app.route('/hello/')
 @app.route('/hello/<name>')
 
@@ -123,18 +107,6 @@ def hello(name=None):
 
 
 
-'''
-
-LOGIN PAGE.  NEED TO IMPLEMENT DATABASE FUNCTIONALITY TO CHECK IF USERNAME/PASSWORD COMBO IS IN DATABASE
-
-SZYMON KOZLOWSKI
-
-TODO ROUTE TO USER PROFILE
-
-TODO CHECK DATABASE FOR USER
-
-
-'''
 @app.route('/leaderboard')
 
 def leaderboard():
@@ -250,19 +222,7 @@ def register():
 
     return render_template('register.html',error=error)  
 
-'''
 
-CLIMB PAGE.  WILL LOOK THROUGH CLIMB DATABSE TO SEE IF CLIMB NAME IS PRESENT.  IF IT IS, RETURN NECESSARY INFORMATION
-
-RYAN JEWIK
-
-TODO DISPLAY STATES -> LOCATIONS -> SPOTS -> SHOW ALL CLIMBS FOR SAID SPOT X
-
-TODO POTENTIALLY RANDOM CLIMB FEATURE OR A SEARCH FUNCTION THAT POPULATES AN ARRAY WITH PARAMETERS
-
-TODO RECOMMENDED CLIMB TAB.  IF USER IS LOGGED IN AND HAS COMPLETED CLIMBS, GENERATE TAILORED RECOMENDATIONS
-
-'''
 @app.route('/allClimbs/')
 def allClimbs():
     query = "SELECT * FROM climbs"
@@ -464,12 +424,6 @@ def climb(locationName = None, stateName = None,areaName = None,spotName = None)
     
 
     return render_template('climb.html',error=error, climbArr = climbArr,locationName = locationName, stateName = stateName, areaName = areaName, spotName = spotName)
-
-
-'''
-JACCOB MAU
-TODO ADD RATING FEATURE IF USER IS LOGGED IN, AND HAS NOT RATED CLIMB
-'''
 
 
 
