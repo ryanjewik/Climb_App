@@ -192,33 +192,7 @@ input[type=submit] {
 }
 
 /* Specific styles for climb listing */
-.home-top5-list {
-  list-style-type: decimal; /* Ensures numbers are shown */
-  padding-left: 20px; /* Adds padding to align numbers properly */
-  text-decoration: none !important;
-}
 
-.home-top5-list li {
-  display: block; /* Overrides any float styles and ensures list items stack vertically */
-  margin-bottom: 10px; /* Adds space between list items */
-  clear: both; /* Clears the float effect */
-}
-
-/* Clears the float effect on all elements inside climb-list for a clean layout */
-.home-top5-list li::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.home-top5-list .climb-name {
-  font-weight: bold; /* Makes climb name bold */
-}
-
-.home-top5-list .climb-rating {
-  display: inline-block; /* Ensures rating does not wrap onto a new line */
-  margin-left: 5px; /* Adds a little space before the rating */
-}
 
 .top-climbs{
   background-color: rgb(38, 69, 38);
@@ -226,14 +200,12 @@ input[type=submit] {
 }
 
 .homepage-image{
-  width: auto;
-  height: auto;
   margin:20px;
 }
 
 .table-response{
   background-color: lightgrey;
-  width: 33%;
+
 }
 .table-header{
   background-color: rgb(169, 235, 169);
@@ -243,10 +215,11 @@ input[type=submit] {
 }
 .index{
   background-color: rgb(168, 168, 168);
-  width:auto;
+  
+  
 }
 .table-striped{
-  width: 100%;
+  
   border-color: white;
 }
 
@@ -258,11 +231,11 @@ input[type=submit] {
 footer {
   text-align: center;
   margin-top: 20px; /* Adjust as needed */
-  position: absolute;
+  position: fixed;
   background-color: #04AA6D;
   bottom: 0;
   width: 100%;
-  height: 60px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
 }
 
 .content {

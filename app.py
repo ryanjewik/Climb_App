@@ -72,7 +72,7 @@ def home():
         JOIN CompletedClimbs ON Climbs.ClimbID = CompletedClimbs.ClimbID
         GROUP BY Climbs.ClimbName
         ORDER BY AvgRating DESC
-        LIMIT 5
+        LIMIT 10
     """)
     top_climbs = conn.execute(top_climbs_query).fetchall()
     climbs_list = [{"name": climb[0], "rating": float(climb[1])} for climb in top_climbs]
