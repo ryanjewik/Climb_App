@@ -13,16 +13,32 @@
     <!-- Ranking List of Climbs -->
     <div class="top-climbs">
         <h2>Top 5 Climbs</h2>
-        <ol class="climb-list">
-            {% for climb in top_climbs %}
-                <li>
-                    <span class="climb-name">#{{ loop.index }} {{ climb.name }}</span> - 
-                    <span class="climb-rating">Rating: {{ climb.rating|round(2) }}</span>
-                </li>
-            {% endfor %}
-        </ol>
+        <div class = "table-response">
+            <table class = "table table-striped route-table hiden-xs-down">
+                <body>
+                        <tr class = "table-header">
+                            <td></td>
+                            <td><b>Climb Name</b>></td>
+                            <td><b>Climb Rating</b></td>
+                        </tr>
+                    {% for climb in top_climbs %}
+                        <tr class = "route-row">
+                            <td class = "index"><b>#{{loop.index}}</b></td>
+                            <td class="climb-name">{{ climb.name }}</td>
+                            <td class="climb-rating">Rating: {{ climb.rating|round(2) }}</td>
+                        </tr>
+                    {% endfor %}
+                </body>
+            </table>
+        </div>
+        <div class = "homepage-image">
+            <img src="images\test3.pdf" alt="J Tree" />
+        </div>
     </div>
+    
 </div>
+
+
 
 <!-- Inside home.html -->
 

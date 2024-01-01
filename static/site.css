@@ -192,31 +192,62 @@ input[type=submit] {
 }
 
 /* Specific styles for climb listing */
-.climb-list {
+.home-top5-list {
   list-style-type: decimal; /* Ensures numbers are shown */
   padding-left: 20px; /* Adds padding to align numbers properly */
+  text-decoration: none !important;
 }
 
-.climb-list li {
+.home-top5-list li {
   display: block; /* Overrides any float styles and ensures list items stack vertically */
   margin-bottom: 10px; /* Adds space between list items */
   clear: both; /* Clears the float effect */
 }
 
 /* Clears the float effect on all elements inside climb-list for a clean layout */
-.climb-list li::after {
+.home-top5-list li::after {
   content: "";
   display: table;
   clear: both;
 }
 
-.climb-list .climb-name {
+.home-top5-list .climb-name {
   font-weight: bold; /* Makes climb name bold */
 }
 
-.climb-list .climb-rating {
+.home-top5-list .climb-rating {
   display: inline-block; /* Ensures rating does not wrap onto a new line */
   margin-left: 5px; /* Adds a little space before the rating */
+}
+
+.top-climbs{
+  background-color: rgb(38, 69, 38);
+  padding: 20px;
+}
+
+.homepage-image{
+  width: auto;
+  height: auto;
+  margin:20px;
+}
+
+.table-response{
+  background-color: lightgrey;
+  width: 33%;
+}
+.table-header{
+  background-color: lightgreen;
+}
+.route-row{
+  width: 100%;
+}
+.index{
+  background-color: lightslategray;
+  width:auto;
+}
+.table-striped{
+  width: 100%;
+  border-color: white;
 }
 
 .stem-gem-link {
@@ -228,6 +259,7 @@ footer {
   text-align: center;
   margin-top: 20px; /* Adjust as needed */
   position: absolute;
+  background-color: #04AA6D;
   bottom: 0;
   width: 100%;
   height: 60px; /* Adjust as needed */
@@ -238,9 +270,5 @@ footer {
   /* Rest of your content styles */
 }
 
-.footer {
-  text-align: center;
-  width: 100%;
-  height: 60px; /* Set the footer height here */
-  /* Rest of your footer styles */
-}
+
+
