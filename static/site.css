@@ -236,13 +236,13 @@ input[type=submit] {
   width: 33%;
 }
 .table-header{
-  background-color: lightgreen;
+  background-color: rgb(169, 235, 169);
 }
 .route-row{
   width: 100%;
 }
 .index{
-  background-color: lightslategray;
+  background-color: rgb(168, 168, 168);
   width:auto;
 }
 .table-striped{
