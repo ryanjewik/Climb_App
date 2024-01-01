@@ -208,7 +208,6 @@ tr:nth-child(even) {
   flex-direction: row; 
   justify-content: center; 
   align-items: center;
-  background-color: aqua;
 }
 
 
