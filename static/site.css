@@ -143,37 +143,37 @@ input[type=submit] {
     background-color: #04AA6D;
     color: white;
     cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  .my-links2 {
+}
 
-  }
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.my-links2 {
 
-  table {
-    width: 25%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    align-items: center;
-  }
+}
 
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
+.user-table {
+  width: 25%;
+  border-collapse: collapse;
+  margin: 0px;
+  align-items: center;
+}
 
-  th {
-    background-color: #f2f2f2;
-  }
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
 
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  .column-1 {
-    width: 15%;
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.column-1 {
+  width: 15%;
 }
 
 .column-2 {
@@ -203,30 +203,44 @@ input[type=submit] {
   margin:20px;
 }
 
+.horizontal-row {
+  display:flex; 
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center;
+  background-color: aqua;
+}
+
+
 .table-response{
   background-color: lightgrey;
-
+  height: auto;
+  width: auto;
+  margin-right: 200px;
 }
 .table-header{
   background-color: rgb(169, 235, 169);
 }
-.route-row{
-  width: 100%;
+
+.climb-name{
+  min-width: 200px;
+  max-width: 300px;
 }
+.climb-rating{
+  min-width: 80px;
+  margin-right:0px;
+}
+
 .index{
   background-color: rgb(168, 168, 168);
-  
+  min-width: 16px;
   
 }
 .table-striped{
-  
+  height:max-content;
   border-color: white;
 }
 
-.stem-gem-link {
-  text-align: center;
-  margin-top: 20px; /* Adjust as needed */
-}
 
 footer {
   text-align: center;
@@ -235,7 +249,7 @@ footer {
   background-color: #04AA6D;
   bottom: 0;
   width: 100%;
-  height: 40px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
 }
 
 .content {

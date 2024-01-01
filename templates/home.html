@@ -13,27 +13,27 @@
     <!-- Ranking List of Climbs -->
     <div class="top-climbs">
         <h2>Top 10 Climbs</h2>
-        <div class = "horizontal-row" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+        <div class = "horizontal-row">
             <div class = "table-response">
                 <table class = "table table-striped route-table hiden-xs-down">
                     <body>
                             <tr class = "table-header">
-                                <td></td>
-                                <td><b>Climb Name</b>></td>
-                                <td><b>Climb Rating</b></td>
+                                <th></th>
+                                <th><b>Climb Name</b>></th>
+                                <th><b>Climb Rating</b></th>
                             </tr>
                         {% for climb in top_climbs %}
                             <tr class = "route-row">
                                 <td class = "index"><b>#{{loop.index}}</b></td>
                                 <td class="climb-name">{{ climb.name }}</td>
-                                <td class="climb-rating">Rating: {{ climb.rating|round(2) }}</td>
+                                <td class="climb-rating">Rating: {{ climb.rating|round(2)}}</td>
                             </tr>
                         {% endfor %}
                     </body>
                 </table>
             </div>
             <div class = "homepage-image">
-                <img src="https://drive.google.com/uc?export=view&id=1TLfs4hY7EkJsjXEPws4c5jNYg-0PODVK" alt="placeholder" height = 30% width = 30%>
+                <img src="https://drive.google.com/uc?export=view&id=1TLfs4hY7EkJsjXEPws4c5jNYg-0PODVK" alt="placeholder", height="500px" width=auto>
             </div>
         </div>
         

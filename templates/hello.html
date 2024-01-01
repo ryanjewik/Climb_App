@@ -7,7 +7,7 @@
 <title>Hello from Flask</title>
 {% if name %}
 <h1 class="message">Hello there, {{ name }}!</h1> 
-<table>
+<table class ="user-table">
     <colgroup>
         <col class="column-1">
         <col class="column-4">
@@ -23,7 +23,7 @@
         <th>Climb Rating</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class = "user-table-body">
       {%for i in range(0, len)%}
       <tr>
         <td>{{climbArr[i].climbName}}</td>
