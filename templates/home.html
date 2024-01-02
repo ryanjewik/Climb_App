@@ -28,7 +28,7 @@
                             {% for climb in top_climbs %}
                                 <tr class = "route-row">
                                     <td class = "index"><b>#{{loop.index}}</b></td>
-                                    <td class="climb-name">{{ climb.name }}</td>
+                                    <td class="climb-name"><a href="http://127.0.0.1:8000/climb///{{climb.name}}">{{ climb.name }}</a></td>
                                     <td class="climb-type">{{ climb.type}}</td>
                                     {% if climb.type == "Boulder" %}
                                         <td class="climb-difficulty">v{{ climb.difficulty}}</td>
