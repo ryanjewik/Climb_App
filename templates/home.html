@@ -5,64 +5,74 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
-<title>Hello from Flask</title>
+<body id="homepage">
+    <title>Hello from Flask</title>
 
-<div class="content">
-    <h1 class="message">Home</h1> 
+    <div class="content">
+        <h1 class="message">Home</h1> 
 
-    <!-- Ranking List of Climbs -->
-    <div class="top-climbs" style>
-        <h2 style = "color: #04AA6D; background-color: white; border-radius: 100px; padding: 10px;"><b>Top 10 Climbs</b></h2>
-        <div class = "horizontal-row">
-            <div class = "table-response">
-                <table class = "table table-striped route-table hiden-xs-down">
-                    <body>
-                            <tr class = "table-header">
-                                <th></th>
-                                <th><b>Climb Name</b>></th>
-                                <th><b>Climb Rating</b></th>
-                            </tr>
-                        {% for climb in top_climbs %}
-                            <tr class = "route-row">
-                                <td class = "index"><b>#{{loop.index}}</b></td>
-                                <td class="climb-name">{{ climb.name }}</td>
-                                <td class="climb-rating">Rating: {{ climb.rating|round(2)}}</td>
-                            </tr>
-                        {% endfor %}
-                    </body>
-                </table>
+        <!-- Ranking List of Climbs -->
+        <div class="top-climbs">
+            <h2 id = 'top-climbs-header'><b>Top 10 Climbs</b></h2>
+            <div class = "horizontal-row">
+                <div class = "table-response">
+                    <table class = "table table-striped route-table hiden-xs-down">
+                        <body>
+                                <tr class = "table-header">
+                                    <th></th>
+                                    <th><b>Climb Name</b></th>
+                                    <th><b>Climb Type</b></th>
+                                    <th><b>Climb Difficulty</b></th>
+                                    <th><b>Climb Rating</b></th>
+                                </tr>
+                            {% for climb in top_climbs %}
+                                <tr class = "route-row">
+                                    <td class = "index"><b>#{{loop.index}}</b></td>
+                                    <td class="climb-name">{{ climb.name }}</td>
+                                    <td class="climb-type">{{ climb.type}}</td>
+                                    {% if climb.type == "Boulder" %}
+                                        <td class="climb-difficulty">v{{ climb.difficulty}}</td>
+                                    {% else %}
+                                        <td class="climb-difficulty">{{ climb.difficulty}}</td>
+                                    {% endif %}
+                                    <td class="climb-rating">Rating: {{ climb.rating|round(2)}}</td>
+                                </tr>
+                            {% endfor %}
+                        </body>
+                    </table>
+                </div>
+                <div class = "homepage-image">
+                    <img src="https://drive.google.com/uc?export=view&id=1TLfs4hY7EkJsjXEPws4c5jNYg-0PODVK" alt="placeholder", height="500px" width=auto>
+                </div>
             </div>
-            <div class = "homepage-image">
-                <img src="https://drive.google.com/uc?export=view&id=1TLfs4hY7EkJsjXEPws4c5jNYg-0PODVK" alt="placeholder", height="500px" width=auto>
-            </div>
+            
+            
         </div>
-        
+        <hr>
         
     </div>
-    <hr>
-    
-</div>
 
 
 
-<!-- Inside home.html -->
+    <!-- Inside home.html -->
 
-{% if 'UserID' in session %}
-    <!-- Rating form for logged-in users -->
-    <form action="{{ url_for('submit_rating') }}" method="post">
-        <label for="climb_id">Select Climb:</label>
-        <select name="climb_id" id="climb_id">
-            {% for climb in climbs %}
-                <option value="{{ climb.ClimbID }}">{{ climb.ClimbName }}</option>
-            {% endfor %}
-        </select>
-        <label for="rating">Rating:</label>
-        <input type="number" name="rating" id="rating" min="1" max="5" required>
-        <input type="submit" value="Submit Rating">
-    </form>
-{% endif %}
+    {% if 'UserID' in session %}
+        <!-- Rating form for logged-in users -->
+        <form action="{{ url_for('submit_rating') }}" method="post">
+            <label for="climb_id">Select Climb:</label>
+            <select name="climb_id" id="climb_id">
+                {% for climb in climbs %}
+                    <option value="{{ climb.ClimbID }}">{{ climb.ClimbName }}</option>
+                {% endfor %}
+            </select>
+            <label for="rating">Rating:</label>
+            <input type="number" name="rating" id="rating" min="1" max="5" required>
+            <input type="submit" value="Submit Rating">
+        </form>
+    {% endif %}
 
 
 
 
-{% endblock %}
+    {% endblock %}
+</body>

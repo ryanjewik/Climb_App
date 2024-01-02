@@ -111,10 +111,7 @@ ul.a{
     color: black;
 }
 
-.body-content {
-    padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+
 h1.title {
     font-size: 10em;
   }
@@ -164,10 +161,11 @@ th, td {
   text-align: left;
   border: 1px solid #ddd;
 }
-
+/*
 th {
   background-color: #f2f2f2;
 }
+*/
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
@@ -195,12 +193,12 @@ tr:nth-child(even) {
 
 
 .top-climbs{
-  background-color: rgb(38, 69, 38);
   padding: 20px;
 }
 
 .homepage-image{
   margin:20px;
+  box-shadow: 1px 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .horizontal-row {
@@ -208,6 +206,7 @@ tr:nth-child(even) {
   flex-direction: row; 
   justify-content: center; 
   align-items: center;
+  margin: min(100px, 10%);
 }
 
 
@@ -215,10 +214,11 @@ tr:nth-child(even) {
   background-color: lightgrey;
   height: auto;
   width: auto;
-  margin-right: 200px;
+  margin: min(100px, 10%);
+  box-shadow: 1px 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 .table-header{
-  background-color: rgb(169, 235, 169);
+  background-color: rgb(98, 149, 98);
 }
 
 .climb-name{
@@ -227,7 +227,12 @@ tr:nth-child(even) {
 }
 .climb-rating{
   min-width: 80px;
-  margin-right:0px;
+}
+.climb-difficulty{
+  min-width: 20px;
+}
+.climb-type{
+  min-width: 100px;
 }
 
 .index{
@@ -240,20 +245,54 @@ tr:nth-child(even) {
   border-color: white;
 }
 
+.body-content{
+  padding: 5px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#homepage {
+  background-image: linear-gradient(to bottom,#333, rgb(38, 69, 38));
+  padding: 5px;
+  
+}
+
+#top-climbs-header{
+  position: absolute;
+  left:10%;
+  right: 10%;
+  background-image: linear-gradient(to right, rgb(245, 153, 168), rgb(121, 66, 121));
+  color: white;  
+  border-radius: 100px; 
+  padding-left: 30px;
+  padding-top: 15px; 
+  padding-bottom: 15px;
+  min-width: 1000px;
+  max-width:1400px;
+
+}
+
+
+.message{
+  color: rgb(186, 183, 183);
+  font-family: 'gill-sans', sans-serif;
+}
 
 footer {
   text-align: center;
-  margin-top: 20px; /* Adjust as needed */
+  margin-top: 3px; /* Adjust as needed */
   position: fixed;
-  background-color: #04AA6D;
+  background-color: #f6fffc;
   bottom: 0;
   width: 100%;
+  padding-bottom: min(10px);
   height: 30px; /* Adjust as needed */
+  
 }
 
 .content {
   min-height: calc(100vh - 60px); /* Adjust the 60px to match your footer height */
   /* Rest of your content styles */
+  margin:30px;
 }
 
 

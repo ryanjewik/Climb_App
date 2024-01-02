@@ -67,7 +67,7 @@ class Climb:
 def home():
     # Fetch top 5 climbs based on average rating
     top_climbs_query = text("""
-        SELECT Climbs.ClimbName, AVG(CompletedClimbs.Rating) as AvgRating
+        SELECT Climbs.ClimbName, Climbs.Difficulty, Climbs.Type, AVG(CompletedClimbs.Rating) as AvgRating
         FROM Climbs
         JOIN CompletedClimbs ON Climbs.ClimbID = CompletedClimbs.ClimbID
         GROUP BY Climbs.ClimbName
@@ -75,7 +75,7 @@ def home():
         LIMIT 10
     """)
     top_climbs = conn.execute(top_climbs_query).fetchall()
-    climbs_list = [{"name": climb[0], "rating": float(climb[1])} for climb in top_climbs]
+    climbs_list = [{"name": climb[0], "rating": float(climb[3]), "type": climb[2], "difficulty": str(int(climb[3]))} for climb in top_climbs]
 
     # Check if the user is logged in
     if 'UserID' in session:
