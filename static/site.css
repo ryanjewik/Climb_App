@@ -141,16 +141,58 @@ h1.title {
     font-size: 10em;
   }
 
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.btn {
+  
+  align-self: center;
+  text-align: left;
+  width: 100%;
+  padding: 12px;
+  border:#333;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
 input{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+  text-align: left;
   align-self: center;
   width: 100%;
   padding: 12px;
   border:#333;
-  border-radius: 100px;
+  border-radius: 10px;
   border-color: #45a049;
+  
 }
+.login-inputs{
+  margin-bottom:7px;
+  
+}
+#login-form{
+  margin-right: 25px;
+}
+
+#login-container{
+  padding:10px;
+  
+}
+
+
 #submit-rating{
   text-align: center;
   align-self: center;
@@ -197,18 +239,8 @@ input:hover,
   font-size: 23px;
 }
 
-input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    cursor: pointer;
-}
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-.my-links2 {
 
-}
 
 .user-table {
   width: 25%;

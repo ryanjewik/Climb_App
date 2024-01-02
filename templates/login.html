@@ -7,16 +7,17 @@
   </head>
   <body class = "background">
     <div id="login-container">
-      <h1>Login</h1>
+      <h1 style = "color: white; font-size: 70px; margin-bottom: 15px;">Login</h1>
       <br>
-      <form action="" method="post">
+      <form action="" method="post", id = "login-form">
         <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
+          request.form.username }}" class = "login-inputs">
          <input type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
-        <input class="btn btn-default" type="submit" value="Login">
+          request.form.password }}" class = "login-inputs">
+        
 
       </form>
+      <input class="btn btn-default" type="submit" value="Login">
       <a href="{{ url_for('register') }}">
         <button class="btn btn-default" type = registerbutton>Register</button>
         
