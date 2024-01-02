@@ -4,52 +4,59 @@
 <head>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
-<title>Hello from Flask</title>
-{% if name %}
-<h1 class="message">Hello there, {{ name }}!</h1> 
-<table class ="user-table">
-    <colgroup>
-        <col class="column-1">
-        <col class="column-4">
-        <col class="column-2">
-        <col class="column-3">
-        
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Climb Name</th>
-        <th>Spot Name</th>
-        <th>Climb Difficulty</th>
-        <th>Climb Rating</th>
-      </tr>
-    </thead>
-    <tbody class = "user-table-body">
-      {%for i in range(0, len)%}
-      <tr>
-        <td>{{climbArr[i].climbName}}</td>
-        <td>{{ratingSpots[i][0]}}</td>
-        <td>V{{climbArr[i].climbDifficulty}}</td>
-        <td>{{ratingSpots[i][1]}}/5</td>
-      </tr>
-      {% endfor %}
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
-  <a href="{{ url_for('handle_download_csv') }}" class="btn">Download CSV</a>
-  <h2>Rate a Climb</h2>
-  <form action="{{ url_for('submit_rating') }}" method="post">
-      <label for="climb_id">Select Climb:</label>
-      <select name="climb_id" id="climb_id">
-          {% for climb in available_climbs %}
-              <option value="{{ climb[0] }}">{{ climb[1] }}</option>
+<body class = "background">
+  <title>Hello from Flask</title>
+    {% if name %}
+    <h1 id="hello-message">Hello there, {{ name }}!</h1> 
+  <div class = "horizontal-row", style = "margin-bottom: 25px;">
+    <table class ="user-table">
+        <colgroup>
+            <col class="column-1">
+            <col class="column-4">
+            <col class="column-2">
+            <col class="column-3">
+            
+        </colgroup>
+        <thead>
+          <tr class = "table-header">
+            <th>Climb Name</th>
+            <th>Spot Name</th>
+            <th>Climb Difficulty</th>
+            <th>Climb Rating</th>
+          </tr>
+        </thead>
+        <tbody class = "user-table-body">
+          {%for i in range(0, len)%}
+          <tr class = "user-table-row">
+            <td>{{climbArr[i].climbName}}</td>
+            <td>{{ratingSpots[i][0]}}</td>
+            <td>V{{climbArr[i].climbDifficulty}}</td>
+            <td>{{ratingSpots[i][1]}}/5</td>
+          </tr>
           {% endfor %}
-      </select>
-      <label for="rating">Rating:</label>
-      <input type="number" name="rating" id="rating" min="1" max="5" required>
-      <input type="submit" value="Submit Rating">
-  </form>
-{% else %}
-<p>No more climbs available to rate.</p>
-<span class="message">Hello World!</span> 
-{% endif %}
-{% endblock %}
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+      <div class = "image">
+        <img src = "https://drive.google.com/uc?export=view&id=1eAUVGYHOEGT3ONTaUD_wHVVbXgCpNXGT" alt = "rubidoux", height="700px" width=auto>
+      </div>
+      </div>
+    <a href="{{ url_for('handle_download_csv') }}" id="csv-btn"><b>Download CSV</b></a>
+    <h2 style = "font-size: 50px; margin-left: 20px; margin-top: 8px; margin-bottom: 8px; color: white">Rate a Climb!</h2>
+    <form action="{{ url_for('submit_rating') }}" method="post">
+        <label for="climb_id" style = "font-size: 25px; color: white;">Select Climb: </label>
+        <select name="climb_id" id="climb_id" style = "margin-bottom: 30px;">
+            {% for climb in available_climbs %}
+                <option value="{{ climb[0] }}">{{ climb[1] }}</option>
+            {% endfor %}
+        </select>
+        <label for="rating" style = "font-size: 25px; color: white"> Rating:</label>
+        <input type="number" id = "rating-btn" name="rating" id="rating" min="1" max="5" required>
+        <input type="submit" value="Submit Rating" id = "submit-rating">
+    </form>
+  {% else %}
+  <p>No more climbs available to rate.</p>
+  <span class="message">Hello World!</span> 
+  {% endif %}
+  {% endblock %}
+</body>
