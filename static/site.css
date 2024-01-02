@@ -8,6 +8,17 @@
   bottom: 60px; /* Height of the footer, adjust as needed */
 }
 
+.background{
+  background-image: linear-gradient(to bottom,#333, rgb(38, 69, 38));
+  padding: 5px;
+}
+@font-face {
+  font-family: "Amatic";
+  src: url('fonts/Amatic-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 .my-links {
     display: flex;
     align-items: center;
@@ -44,12 +55,14 @@ ul.b {
     -moz-column-count: 3;
     column-count: auto;
 }
-
+.a{
+  font-size: 20px;
+}
 ul.a{
     
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 5px 5px 10px 10px;
     overflow: hidden;
     background-color: #333;
     
@@ -161,15 +174,28 @@ th, td {
   text-align: left;
   border: 1px solid #ddd;
 }
-/*
-th {
-  background-color: #f2f2f2;
-}
-*/
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+.leaderboard-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+#leaderboard-message{
+  color: rgb(250, 218, 35);
+  text-align: center;
+  font-family: "Amatic";
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+.leaderboard-row:nth-child(odd) {
+  background-color: #cecece;
+}
+#leaderboard-header{
+  background-color: rgb(98, 149, 98)
+  
+}
+
 .column-1 {
   width: 15%;
 }
@@ -179,21 +205,26 @@ tr:nth-child(even) {
 }
 
 .column-3 {
-    width: 5%;
+  width: 5%;
 }
 .column-4 {
   width: 5%;
 }
-.center {
+#leaderboard {
   margin-left: auto;
   margin-right: auto;
+  width: 25%;
+  border-color: gold;
+  border-style: inset;
 }
 
-/* Specific styles for climb listing */
+/*-------------------------homepage begin---------------------- */
 
 
 .top-climbs{
   padding: 20px;
+  font-family: "Amatic";
+  font-size: 20px;
 }
 
 .homepage-image{
@@ -219,6 +250,7 @@ tr:nth-child(even) {
 }
 .table-header{
   background-color: rgb(98, 149, 98);
+  font-size: 23px;
 }
 
 .climb-name{
@@ -253,7 +285,7 @@ tr:nth-child(even) {
 #homepage {
   background-image: linear-gradient(to bottom,#333, rgb(38, 69, 38));
   padding: 5px;
-  
+  font-family: "Amatic";
 }
 
 #top-climbs-header{
@@ -268,14 +300,20 @@ tr:nth-child(even) {
   padding-bottom: 15px;
   min-width: 1000px;
   max-width:1400px;
+  font-size: 40px;
 
 }
 
-
-.message{
+#home-message{
   color: rgb(186, 183, 183);
   font-family: 'gill-sans', sans-serif;
+  text-align: center;
+  font-family: "Amatic";
+  font-size: 70px;
+  margin-bottom: 20px;
 }
+
+/*--------------------------homepage end-------------------------*/
 
 footer {
   text-align: center;

@@ -4,28 +4,59 @@
 <head>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
-<title>Leaderboard</title>
-<h1 class="message">Leaderboard</h1> 
-<table class="center">
-    <colgroup>
-        <col class="column-1">
-        <col class="column-3">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Climbs Completed</th>
-      </tr>
-    </thead>
-    <tbody>
-      {%for i in range(0, len)%}
-      <tr>
-        <td>{{userArr[i][0]}}</td>
-        <td>{{userArr[i][1]}}</td>
-      </tr>
-      {% endfor %}
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+<body class = 'background'>
+  <title>Leaderboard</title>
+  <h1 id="leaderboard-message"><em>Leaderboard</em></h1> 
+  <table id="leaderboard">
+      <colgroup>
+          <col class="column-1">
+          <col class="column-3">
+      </colgroup>
+      <thead>
+        <tr id = "leaderboard-header">
+          <th>Username</th>
+          <th>Climbs Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in range(0, len)%}
+        <tr class = "leaderboard-row">
+          {% if i == 0 %}
+            <td style = "background-color: gold;">{{userArr[i][0]}}</td>
+            <td style = "background-color: gold;">{{userArr[i][1]}}</td>
+          {% elif i == 1 %}
+            <td style = "background-color: silver;">{{userArr[i][0]}}</td>
+            <td style = "background-color: silver;">{{userArr[i][1]}}</td>
+          {% elif i == 2 %}
+            <td style = "background-color: rgb(204, 152, 64);">{{userArr[i][0]}}</td>
+            <td style = "background-color: rgb(165, 126, 42);">{{userArr[i][1]}}</td>
+          {% else %}
+            <td>{{userArr[i][0]}}</td>
+            <td>{{userArr[i][1]}}</td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
 
 {% endblock %}
