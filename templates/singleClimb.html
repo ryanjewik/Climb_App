@@ -5,14 +5,23 @@
 
 <body class = 'background' style = "font-size: 30px; color: white">
     <h1 class="title">{{ climb.climbName }}</h1>
-
-    {% if error and climbName %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-    {% elif climb %}
-        <h2>Climb Difficulty: {{ climb.climbDifficulty }} </h2>
-        <h2>Climb Type: {{ climb.climbType }} </h2>
-        <h2>Climb Spot: {{ climb.climbSpot }} </h2>
-
+    <div class = "climb-content">
+        <div class = "climb-info">
+            {% if error and climbName %}
+                <p class="error"><strong>Error:</strong> {{ error }}
+            {% elif climb %}
+                {% if climb.type == "Boulder" %}
+                    <h2>Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
+                {% else %}
+                    <h2>Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
+                {% endif %}
+                <h2>Climb Type: {{ climb.climbType }} </h2>
+                <h2>Climb Spot: {{ climb.climbSpot }} </h2>
+        </div>
+        <div class = "image">
+            <img src = "https://drive.google.com/uc?export=view&id=" alt = "climb image" width = "500px" height = "500px">
+        </div>
+    </div>
         <!-- Button for Marking Climb as Completed -->
         {% if 'userID' in session and not_already_completed %}
             <form action="{{ url_for('mark_completed', climb_id=climb.ClimbID) }}" method="post">
