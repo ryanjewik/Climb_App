@@ -1,20 +1,23 @@
 <!doctype html>
 {% extends "layout.html" %}
 {% block content %}
+<html>
+    <body class = 'background' style = "font-size: 30px; background-size:cover; background-image: url(https://drive.google.com/uc?export=view&id=1oAi8EbBHvJFTJMXO9OQdCVJlfPfP-bSB)">
+        <div>
+        {% if userName %}
+        <h1>{{userName}} Climbs</h1>
+        {% else %}
+        <h1 style = "font-size: 75px; color: white;">Climb List</h1>
+        {% endif %}
+        </div>
+        <ul class ="climbList">
+        {% for each in climbArr %}
 
-<div>
-{% if userName %}
-<h1>{{userName}} Climbs</h1>
-{% else %}
-<h1>Climb List</h1>
-{% endif %}
-</div>
-<ul class ="b">
-{% for each in climbArr %}
+        <a href="{{ url_for('singleClimb', climbName=each, areaName = areaName,locationName = locationName, stateName = stateName, spotName = spotName)  }}" class="my-links">{{each}}</a>
 
-<a href="{{ url_for('singleClimb', climbName=each, areaName = areaName,locationName = locationName, stateName = stateName, spotName = spotName)  }}" class="my-links">{{each}}</a>
-
-<h1></h1>
-{% endfor %}
-</ul>
-{% endblock %}
+        <h1></h1>
+        {% endfor %}
+        </ul>
+        {% endblock %}
+    </body>
+</html>

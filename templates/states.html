@@ -1,20 +1,21 @@
 <!doctype html>
 {% extends "layout.html" %}
 {% block content %}
+<body class = 'background' style = "font-size: 30px; color: white">
+    <div>
+    {% if userName %}
+    <h1>{{userName}} Climbs</h1>
+    {% else %}
+    <h1>States</h1>
+    {% endif %}
+    </div>
+    <ul class ="climbsList">
+    {% for each in statesArr %}
 
-<div>
-{% if userName %}
-<h1>{{userName}} Climbs</h1>
-{% else %}
-<h1>States</h1>
-{% endif %}
-</div>
-<ul class ="b">
-{% for each in statesArr %}
+    <a href="{{ url_for('locations', stateName=each, userName = each)  }}" class="my-links">{{each}}</a>
 
-<a href="{{ url_for('locations', stateName=each, userName = each)  }}" class="my-links">{{each}}</a>
-
-<h1></h1>
-{% endfor %}
-</ul>
-{% endblock %}
+    <h1></h1>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+</body>

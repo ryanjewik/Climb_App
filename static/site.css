@@ -33,14 +33,14 @@
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    max-width: 100px; /* Set a minimum width for the buttons */
-    height: 50px;
+    width: 120px; /* Set a minimum width for the buttons */
+    height: 60px;
     text-overflow: ellipsis;
     padding: 10px;
     display: inline-block; /* Make sure it doesn't stretch full width */
     margin: 0 auto; /* Center the button if .top-container is flex */
     text-decoration: none; /* Remove underline from link */
-    padding: 10px 20px; /* Add some padding inside the button */
+    padding: 15px 20px; /* Add some padding inside the button */
     /* Add more styles as needed */
 }
 
@@ -53,15 +53,15 @@
     /* Add more hover styles as needed */
 }
 
-ul.b {
+ul.climbList {
     -webkit-column-count: auto;
     -moz-column-count: 3;
     column-count: auto;
 }
-.a{
+.navbar{
   font-size: 20px;
 }
-ul.a{
+ul.navbar{
     
     list-style-type: none;
     margin: 0;
@@ -133,7 +133,7 @@ ul.a{
 .title {
     text-align: center;
     font-weight: 1000;
-    color: black;
+    color: white;
 }
 
 
@@ -183,7 +183,7 @@ input{
   margin-bottom:7px;
   
 }
-#login-form{
+.info-form{
   margin-right: 25px;
 }
 

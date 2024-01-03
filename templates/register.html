@@ -5,21 +5,39 @@
     <title>Flask Intro - login page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
+  <body class = 'background'>
     <div class="container">
-      <h1>Register</h1>
+      <h1 style = "font-size: 75px; color: white;">Register</h1>
       <br>
-      <form action="" method="post">
+      <form action="" method="post" class = "info-form" style>
         <input type="text" placeholder="Username" name="usernameRegister" value="{{
-          request.form.usernameRegister}}">
+          request.form.usernameRegister}}" class = "login-inputs">
          <input type="password" placeholder="Password" name="passwordRegister" value="{{
-          request.form.passwordRegister}}">
-        <input class="btn btn-default" type="submit" value="Register">
+          request.form.passwordRegister}}" class = "login-inputs">
+        <input class="btn btn-default" type="submit" value="Register" style = "width: 101.8%;">
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </body>
 </html>
 {% endblock %}
