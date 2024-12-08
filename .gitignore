@@ -1,0 +1,13 @@
+data/*.csv
+
+__pycache__
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Virtual environment
+venv/
+env/
