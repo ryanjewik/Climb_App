@@ -8,6 +8,8 @@
 
 ## Install Response with "pip install Response"
 
+## Install mysql-connector-python
+
 ## In order to run, execute "python -m flask run --port 8000"
 
 ### The "templates" folder is where all of the html pages go
