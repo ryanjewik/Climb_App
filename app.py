@@ -13,7 +13,7 @@ import logging
 
 
 
-connection_string = "mysql+mysqlconnector://root:CPSC408!@localhost:3306/climbing_db"
+connection_string = ""
 engine = create_engine(connection_string, echo=True)
 
 try:

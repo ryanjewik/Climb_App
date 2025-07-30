@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body class = 'background'>
-    <div class="container">
-      <h1 style = "font-size: 75px; color: white;">Register</h1>
-      <br>
-      <form action="" method="post" class = "info-form" style>
-        <input type="text" placeholder="Username" name="usernameRegister" value="{{
-          request.form.usernameRegister}}" class = "login-inputs">
-         <input type="password" placeholder="Password" name="passwordRegister" value="{{
-          request.form.passwordRegister}}" class = "login-inputs">
-        <input class="btn btn-default" type="submit" value="Register" style = "width: 101.8%;">
+    <div class="container" style="max-width: 400px; margin: 60px auto; background: rgba(255,255,255,0.08); border-radius: 18px; box-shadow: 0 2px 12px rgba(76,175,80,0.15); padding: 40px 30px;">
+      <h1 style="font-size: 60px; color: white; text-align: center; font-family: 'Amatic', cursive; margin-bottom: 25px;">Register</h1>
+      <form action="" method="post" class="register-form" style="display: flex; flex-direction: column; gap: 22px;">
+        <input type="text" placeholder="Username" name="usernameRegister" value="{{ request.form.usernameRegister }}" class="login-inputs" style="font-size: 1.2em; padding: 14px; border-radius: 10px; border: 1px solid #4caf50;">
+        <input type="password" placeholder="Password" name="passwordRegister" value="{{ request.form.passwordRegister }}" class="login-inputs" style="font-size: 1.2em; padding: 14px; border-radius: 10px; border: 1px solid #4caf50;">
+        <input class="btn btn-default" type="submit" value="Register" style="width: 100%; font-size: 1.2em; border-radius: 100px; background: linear-gradient(90deg, #4caf50, #81c784); color: white; padding: 14px; margin-top: 10px;">
       </form>
       {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
+        <p class="error" style="color: #ff5252; font-size: 1.1em; margin-top: 18px; text-align: center;"><strong>Error:</strong> {{ error }}</p>
       {% endif %}
     </div>
     <br>

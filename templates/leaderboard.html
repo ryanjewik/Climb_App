@@ -4,59 +4,43 @@
 <head>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 </head>
-<body class = 'background' style = "background-size: cover; background-image: url(https://drive.google.com/uc?export=view&id=1bHAq2p6B6Vul7oLLnc1tpNyN7HhdBQRR);">
+<body class="background">
   <title>Leaderboard</title>
-  <h1 id="leaderboard-message"><em>Leaderboard</em></h1> 
-  <table id="leaderboard">
+  <h1 id="leaderboard-message" style="font-family: 'Amatic', cursive; font-size: 70px; color: #4caf50; margin-bottom: 30px; text-shadow: 0 2px 12px rgba(76,175,80,0.15);"><em>Leaderboard</em></h1>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <table id="leaderboard" style="border-radius: 24px; box-shadow: 0 4px 32px rgba(76,175,80,0.12); background: rgba(255,255,255,0.10); font-family: 'Amatic', cursive; font-size: 2em; width: 40vw; min-width: 320px; max-width: 600px; margin: 0 auto;">
       <colgroup>
-          <col class="column-1">
-          <col class="column-3">
+        <col class="column-1">
+        <col class="column-3">
       </colgroup>
       <thead>
-        <tr class = "table-header">
-          <th>Username</th>
-          <th>Climbs Completed</th>
+        <tr class="table-header" style="background-color: #4caf50; color: #fff; font-size: 1.2em;">
+          <th style="padding: 18px 28px; border-radius: 10px 0 0 10px;">Username</th>
+          <th style="padding: 18px 28px; border-radius: 0 10px 10px 0;">Climbs Completed</th>
         </tr>
       </thead>
       <tbody>
-        {%for i in range(0, len)%}
-        <tr class = "leaderboard-row">
+        {% for i in range(0, len) %}
+        <tr class="leaderboard-row" style="font-size: 1em;">
           {% if i == 0 %}
-            <td style = "background-color: gold;">{{userArr[i][0]}}</td>
-            <td style = "background-color: gold;">{{userArr[i][1]}}</td>
+            <td style="background-color: gold; color: #333; font-weight: bold;">{{userArr[i][0]}}</td>
+            <td style="background-color: gold; color: #333; font-weight: bold;">{{userArr[i][1]}}</td>
           {% elif i == 1 %}
-            <td style = "background-color: silver;">{{userArr[i][0]}}</td>
-            <td style = "background-color: silver;">{{userArr[i][1]}}</td>
+            <td style="background-color: silver; color: #333; font-weight: bold;">{{userArr[i][0]}}</td>
+            <td style="background-color: silver; color: #333; font-weight: bold;">{{userArr[i][1]}}</td>
           {% elif i == 2 %}
-            <td style = "background-color: rgb(204, 152, 64);">{{userArr[i][0]}}</td>
-            <td style = "background-color: rgb(165, 126, 42);">{{userArr[i][1]}}</td>
+            <td style="background-color: #c49c40; color: #333; font-weight: bold;">{{userArr[i][0]}}</td>
+            <td style="background-color: #a57e2a; color: #333; font-weight: bold;">{{userArr[i][1]}}</td>
           {% else %}
-            <td>{{userArr[i][0]}}</td>
-            <td>{{userArr[i][1]}}</td>
+            <td style="background-color: #f9f9f9; color: #388e3c;">{{userArr[i][0]}}</td>
+            <td style="background-color: #f9f9f9; color: #388e3c;">{{userArr[i][1]}}</td>
           {% endif %}
         </tr>
         {% endfor %}
-        <!-- Add more rows as needed -->
       </tbody>
     </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  </div>
+    <!-- spacing handled by theme, removed excessive <br> tags -->
   </body>
 
 {% endblock %}

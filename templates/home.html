@@ -12,41 +12,39 @@
         <h1 id="home-message">Home</h1> 
 
         <!-- Ranking List of Climbs -->
-        <div class="top-climbs">
-            <h2 id = 'top-climbs-header'><b>Top 10 Climbs</b></h2>
-            <div class = "horizontal-row">
-                <div class = "table-response">
-                    <table class = "table table-striped route-table hiden-xs-down">
-                        <body>
-                                <tr class = "table-header">
-                                    <th></th>
-                                    <th><b>Climb Name</b></th>
-                                    <th><b>Climb Type</b></th>
-                                    <th><b>Climb Difficulty</b></th>
-                                    <th><b>Climb Rating</b></th>
-                                </tr>
+        <div class="top-climbs-centered">
+            <h2 id="top-climbs-header"><b>Top 10 Climbs</b></h2>
+            <div class="horizontal-row-centered">
+                <div class="table-response-centered">
+                    <table class="table table-striped route-table hiden-xs-down">
+                        <tbody>
+                            <tr class="table-header">
+                                <th></th>
+                                <th><b>Climb Name</b></th>
+                                <th><b>Climb Type</b></th>
+                                <th><b>Climb Difficulty</b></th>
+                                <th><b>Climb Rating</b></th>
+                            </tr>
                             {% for climb in top_climbs %}
-                                <tr class = "route-row">
-                                    <td class = "index"><b>#{{loop.index}}</b></td>
-                                    <td class="climb-name"><a href="http://127.0.0.1:8000/climb///{{climb.name}}">{{ climb.name }}</a></td>
-                                    <td class="climb-type">{{ climb.type}}</td>
-                                    {% if climb.type == "Boulder" %}
-                                        <td class="climb-difficulty">v{{ climb.difficulty}}</td>
-                                    {% else %}
-                                        <td class="climb-difficulty">{{ climb.difficulty}}</td>
-                                    {% endif %}
-                                    <td class="climb-rating">Rating: {{ climb.rating|round(2)}}</td>
-                                </tr>
+                            <tr class="route-row">
+                                <td class="index"><b>#{{loop.index}}</b></td>
+                                <td class="climb-name"><a href="http://127.0.0.1:8000/climb///{{climb.name}}">{{ climb.name }}</a></td>
+                                <td class="climb-type">{{ climb.type}}</td>
+                                {% if climb.type == "Boulder" %}
+                                    <td class="climb-difficulty">v{{ climb.difficulty}}</td>
+                                {% else %}
+                                    <td class="climb-difficulty">{{ climb.difficulty}}</td>
+                                {% endif %}
+                                <td class="climb-rating">Rating: {{ climb.rating|round(2)}}</td>
+                            </tr>
                             {% endfor %}
-                        </body>
+                        </tbody>
                     </table>
                 </div>
-                <div class = "image">
-                    <img src="https://drive.google.com/uc?export=view&id=1TLfs4hY7EkJsjXEPws4c5jNYg-0PODVK" alt="jtree" height="500px" width=auto>
+                <div class="image-centered">
+                    <img src="{{ url_for('static', filename='images/frontCover.jpg') }}" alt="jtree" class="climb-cover-img">
                 </div>
             </div>
-            
-            
         </div>
         <hr>
         

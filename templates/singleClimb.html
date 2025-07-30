@@ -3,24 +3,25 @@
 {% block content %}
 
 
-<body class = 'background' style = "font-size: 30px; color: white">
-    <h1 class="title">{{ climb.climbName }}</h1>
-    <div class = "climb-content">
-        <div class = "climb-info">
-            {% if error and climbName %}
-                <p class="error"><strong>Error:</strong> {{ error }}
-            {% elif climb %}
-                {% if climb.type == "Boulder" %}
-                    <h2>Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
-                {% else %}
-                    <h2>Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
-                {% endif %}
-                <h2>Climb Type: {{ climb.climbType }} </h2>
-                <h2>Climb Spot: {{ climb.climbSpot }} </h2>
-        </div>
-        <div class = "image">
-           <!-- <img src = "https://drive.google.com/uc?export=view&id=" alt = "climb image" width = "500px" height = "500px"> -->
-        </div>
+<body class='background' style="font-size: 36px; color: white;">
+    <h1 class="title" style="text-align: center; font-size: 4em;">{{ climb.climbName }}</h1>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div class="image" style="margin-bottom: 32px;">
+        <img src="{{ url_for('static', filename='images/stem_gem.jpg') }}" alt="climb image" style="display: block; margin: 0 auto; max-width: 1000px; max-height: 1000px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.3);">
+      </div>
+      <div class="climb-info" style="text-align: center; font-size: 1.3em;">
+        {% if error and climbName %}
+          <p class="error" style="font-size: 1.1em;"><strong>Error:</strong> {{ error }}
+        {% elif climb %}
+          {% if climb.type == "Boulder" %}
+            <h2 style="font-size: 1.3em;">Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
+          {% else %}
+            <h2 style="font-size: 1.3em;">Climb Difficulty: v{{ climb.climbDifficulty }} </h2>
+          {% endif %}
+          <h2 style="font-size: 1.3em;">Climb Type: {{ climb.climbType }} </h2>
+          <h2 style="font-size: 1.3em;">Climb Spot: {{ climb.climbSpot }} </h2>
+        {% endif %}
+      </div>
     </div>
         <!-- Button for Marking Climb as Completed -->
         {% if 'userID' in session and not_already_completed %}
@@ -43,7 +44,5 @@
                 <button type="submit">Submit Rating</button>
             </form>
         {% endif %}
-    {% endif %}
-
     {% endblock %}
 </body>

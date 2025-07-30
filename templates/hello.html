@@ -7,53 +7,61 @@
 <body class = "background">
   <title>Hello from Flask</title>
     {% if name %}
-    <h1 id="hello-message">Hello there, {{ name }}!</h1> 
-  <div class = "horizontal-row", style = "margin-bottom: 25px;">
-    <table class ="user-table">
-        <colgroup>
-            <col class="column-1">
-            <col class="column-4">
-            <col class="column-2">
-            <col class="column-3">
-            
-        </colgroup>
-        <thead>
-          <tr class = "table-header">
-            <th>Climb Name</th>
-            <th>Spot Name</th>
-            <th>Climb Difficulty</th>
-            <th>Climb Rating</th>
-          </tr>
-        </thead>
-        <tbody class = "user-table-body">
-          {%for i in range(0, len)%}
-          <tr class = "user-table-row">
-            <td>{{climbArr[i].climbName}}</td>
-            <td>{{ratingSpots[i][0]}}</td>
-            <td>V{{climbArr[i].climbDifficulty}}</td>
-            <td>{{ratingSpots[i][1]}}/5</td>
-          </tr>
-          {% endfor %}
-          <!-- Add more rows as needed -->
-        </tbody>
-      </table>
-      <div class = "image">
-        <img src = "https://drive.google.com/uc?export=view&id=1eAUVGYHOEGT3ONTaUD_wHVVbXgCpNXGT" alt = "rubidoux", height="700px" width=auto>
+    <h1 id="hello-message">Hello there, {{ name }}!</h1>
+    <div class="profile-card">
+      <div class="profile-main-row">
+        <div class="profile-table-container">
+          <table class="user-table">
+            <colgroup>
+              <col class="column-1">
+              <col class="column-4">
+              <col class="column-2">
+              <col class="column-3">
+            </colgroup>
+            <thead>
+              <tr class="table-header">
+                <th>Climb Name</th>
+                <th>Spot Name</th>
+                <th>Climb Difficulty</th>
+                <th>Climb Rating</th>
+              </tr>
+            </thead>
+            <tbody class="user-table-body">
+              {% for i in range(0, len) %}
+              <tr class="user-table-row">
+                <td>{{ climbArr[i].climbName }}</td>
+                <td>{{ ratingSpots[i][0] }}</td>
+                <td>V{{ climbArr[i].climbDifficulty }}</td>
+                <td>{{ ratingSpots[i][1] }}/5</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="profile-image-form-stack">
+          <div class="profile-image-container">
+            <img src="{{ url_for('static', filename='images/rubidoux.jpg') }}" alt="rubidoux" class="climb-cover-img">
+          </div>
+          <div class="profile-form-container">
+            <h2 class="profile-form-title">Rate a Climb!</h2>
+            <form action="{{ url_for('submit_rating') }}" method="post" class="profile-form">
+              <label for="climb_id" class="profile-label">Select Climb: </label>
+              <select name="climb_id" id="climb_id" class="profile-select">
+                {% for climb in available_climbs %}
+                  <option value="{{ climb[0] }}">{{ climb[1] }}</option>
+                {% endfor %}
+              </select>
+              <label for="rating" class="profile-label">Rating:</label>
+              <input type="number" id="rating-btn" name="rating" min="1" max="5" required class="profile-input">
+              <input type="submit" value="Submit Rating" id="submit-rating" class="profile-btn">
+            </form>
+          </div>
+        </div>
       </div>
+      <div class="profile-actions-stacked">
+        <a href="{{ url_for('handle_download_csv') }}" id="csv-btn" class="profile-btn" style="align-self: center; margin-top: 30px;"><b>Download CSV</b></a>
       </div>
-    <a href="{{ url_for('handle_download_csv') }}" id="csv-btn"><b>Download CSV</b></a>
-    <h2 style = "font-size: 50px; margin-left: 20px; margin-top: 8px; margin-bottom: 8px; color: white">Rate a Climb!</h2>
-    <form action="{{ url_for('submit_rating') }}" method="post">
-        <label for="climb_id" style = "font-size: 25px; color: white;">Select Climb: </label>
-        <select name="climb_id" id="climb_id" style = "margin-bottom: 30px;">
-            {% for climb in available_climbs %}
-                <option value="{{ climb[0] }}">{{ climb[1] }}</option>
-            {% endfor %}
-        </select>
-        <label for="rating" style = "font-size: 25px; color: white"> Rating:</label>
-        <input type="number" id = "rating-btn" name="rating" id="rating" min="1" max="5" required>
-        <input type="submit" value="Submit Rating" id = "submit-rating">
-    </form>
+    </div>
   {% else %}
   <p>No more climbs available to rate.</p>
   <span class="message">Hello World!</span> 
